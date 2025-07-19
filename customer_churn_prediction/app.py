@@ -6,6 +6,9 @@ from helper import MultiColumnLabelEncoder
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
+st.write("📂 Current Working Directory:", os.getcwd())
+st.write("📁 Files in Current Directory:", os.listdir())
 
 with open('churn_pipeline.pkl', 'rb') as f:
     model = pickle.load(f)
