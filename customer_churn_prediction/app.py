@@ -5,16 +5,18 @@ from xgboost import XGBClassifier
 from helper import MultiColumnLabelEncoder
 import warnings
 warnings.filterwarnings("ignore")
-
 import os
-st.write("📂 Current Working Directory:", os.getcwd())
-st.write("📁 Files in Current Directory:", os.listdir())
 
-with open('churn_pipeline.pkl', 'rb') as f:
+base_path = os.path.dirname(__file__)
+
+model_path = os.path.join(base_path, 'churn_pipeline.pkl')
+xgb_path = os.path.join(base_path, 'xgb_model.json')
+
+with open(model_path, 'rb') as f:
     model = pickle.load(f)
 
 xgb_model = XGBClassifier()
-xgb_model.load_model('xgb_model.json')
+xgb_model.load_model(xgb_path)
 
 st.set_page_config(page_title="Customer Churn Predictor", layout="wide")
 
